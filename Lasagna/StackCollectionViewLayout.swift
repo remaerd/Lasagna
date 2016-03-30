@@ -9,7 +9,7 @@
 import UIKit
 
 
-@objc public protocol CardCollectionViewDelegate : UICollectionViewDelegate {
+@objc public protocol StackCollectionViewLayout : UICollectionViewDelegate {
   
   optional func collectionView(collectionView:UICollectionView, atIndex:Int, didSwipeToDirection: UISwipeGestureRecognizerDirection)
   optional func collectionView(collectionView:UICollectionView, atIndex:Int, didDragToPoint:CGPoint)
@@ -17,18 +17,18 @@ import UIKit
 }
 
 
-public class CardCollectionViewLayoutAttributes : UICollectionViewLayoutAttributes {
+public class StackCollectionViewLayoutAttributes : UICollectionViewLayoutAttributes {
   
   public var originAngle : Float = 0
 }
 
 
-public class CardCollectionViewLayout: UICollectionViewLayout, UIGestureRecognizerDelegate {
+public class StackCollectionViewLayout: UICollectionViewLayout, UIGestureRecognizerDelegate {
   
   public enum CardDraggingBehaviorType {
     case Disabled
-    case OneCard(edges:UIEdgeInsets)
-    case MultipleCards(maximumCard: Int?)
+    case One(edges:UIEdgeInsets)
+    case Multiple(maximumCard: Int?)
   }
 
   
@@ -55,16 +55,16 @@ public class CardCollectionViewLayout: UICollectionViewLayout, UIGestureRecogniz
   
   public var numberOfVisibleCards   : Int = 3
   
-  public var cardDraggingBehavior   : CardDraggingBehaviorType = .OneCard(edges: UIEdgeInsets(top: 80, left: 80, bottom: 80, right: 80)) { didSet { prepareGestureRecognizer() } }
-  public var cardRotating           : CardRotatingEffectType = .Disabled { didSet { self.invalidateLayout() } }
-  public var cardScaling            : CardScalingEffectType = .Disabled { didSet { self.invalidateLayout() } }
-  public var cardFading             : CardFadingEffectType = .Disabled { didSet { self.invalidateLayout() } }
+  public var cardDraggingBehavior   : CardDraggingBehaviorType = .One(edges: UIEdgeInsets(top: 80, left: 80, bottom: 80, right: 80)) { didSet { prepareGestureRecognizer() } }
+  public var cardRotating           : CardRotatingEffectType = .Disabled { didSet { self.invalidateLayout() }}
+  public var cardScaling            : CardScalingEffectType = .Disabled { didSet { self.invalidateLayout() }}
+  public var cardFading             : CardFadingEffectType = .Disabled { didSet { self.invalidateLayout() }}
   public var cardSize               : CGSize
   public var cardAnimationSpeed     : Double = 0.5
   
   public var currentCardIndexPath   : NSIndexPath = NSIndexPath(forItem: 0, inSection: 0)
   public var draggingCardIndexPath  : NSIndexPath?
-  
+  public var infinite               : Bool = false { didSet { self.invalidateLayout() }}
   
   private var _cachedAttributes     = NSCache()
   
@@ -101,7 +101,7 @@ extension CardCollectionViewLayout {
     case .Disabled:
       self._panGesture.enabled = false
       self.collectionView?.removeGestureRecognizer(self._panGesture)
-    case .OneCard, .MultipleCards:
+    case .One, .Multiple:
       self._panGesture.enabled = true
       if self.collectionView?.gestureRecognizers?.indexOf(self._panGesture) < 0 {
         self.collectionView?.addGestureRecognizer(self._panGesture)
@@ -127,10 +127,14 @@ extension CardCollectionViewLayout {
   
   public override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
     var attributesArray = [UICollectionViewLayoutAttributes]()
-    var count = (currentCardIndexPath.item + 1) + numberOfVisibleCards
-    if count > self.collectionView!.numberOfItemsInSection(0) { count = self.collectionView!.numberOfItemsInSection(0) }
-    for i in currentCardIndexPath.item..<count {
-      if let attributes = self.layoutAttributesForItemAtIndexPath(NSIndexPath(forItem: i, inSection: 0)) { attributesArray.append(attributes) }
+    if infinite == false {
+      var count = (currentCardIndexPath.item + 1) + numberOfVisibleCards
+      if count > self.collectionView!.numberOfItemsInSection(0) { count = self.collectionView!.numberOfItemsInSection(0) }
+      for i in currentCardIndexPath.item..<count {
+        if let attributes = self.layoutAttributesForItemAtIndexPath(NSIndexPath(forItem: i, inSection: 0)) { attributesArray.append(attributes) }
+      }
+    } else {
+      
     }
     return attributesArray
   }
@@ -197,6 +201,7 @@ extension CardCollectionViewLayout {
 
 
 internal extension CardCollectionViewLayout {
+  
   
   internal func dragHandler(gesture:UIPanGestureRecognizer) {
     
@@ -273,8 +278,8 @@ internal extension CardCollectionViewLayout {
       }
       
       switch self.cardDraggingBehavior {
-      case .OneCard(let edges): endDragWithOneCard(edges)
-      case .MultipleCards(_): print("Unimplemented")
+      case .One(let edges): endDragWithOneCard(edges)
+      case .Multiple(_): print("Unimplemented")
       default: return
       }
     }

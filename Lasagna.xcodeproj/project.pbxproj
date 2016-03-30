@@ -14,7 +14,6 @@
 		03435C431CA212D7008E4621 /* Luminosity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03435C3F1CA212D7008E4621 /* Luminosity.swift */; };
 		03435C441CA212D7008E4621 /* RandomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03435C401CA212D7008E4621 /* RandomColor.swift */; };
 		03C4845D1C9D78E9000CD506 /* Lasagna.h in Headers */ = {isa = PBXBuildFile; fileRef = 03C4845C1C9D78E9000CD506 /* Lasagna.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		03C484651C9D78F9000CD506 /* CardCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C484641C9D78F9000CD506 /* CardCollectionView.swift */; };
 		03C4846D1C9D7A02000CD506 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C4846C1C9D7A02000CD506 /* AppDelegate.swift */; };
 		03C4846F1C9D7A02000CD506 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C4846E1C9D7A02000CD506 /* ViewController.swift */; };
 		03C484741C9D7A02000CD506 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03C484731C9D7A02000CD506 /* Assets.xcassets */; };
@@ -22,6 +21,7 @@
 		03C484831C9D7A1A000CD506 /* Lasagna_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C484821C9D7A1A000CD506 /* Lasagna_Tests.swift */; };
 		03C4848A1C9DC3B3000CD506 /* Lasagna.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03C484591C9D78E9000CD506 /* Lasagna.framework */; };
 		03C4848C1C9DC3BD000CD506 /* Lasagna.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03C484591C9D78E9000CD506 /* Lasagna.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		03F502CA1CA3D73D007358E8 /* CardCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F502C91CA3D73D007358E8 /* CardCollectionViewLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,7 +65,7 @@
 		03C484591C9D78E9000CD506 /* Lasagna.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Lasagna.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		03C4845C1C9D78E9000CD506 /* Lasagna.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Lasagna.h; sourceTree = "<group>"; };
 		03C4845E1C9D78E9000CD506 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		03C484641C9D78F9000CD506 /* CardCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCollectionView.swift; sourceTree = "<group>"; };
+		03C484641C9D78F9000CD506 /* StackCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackCollectionViewLayout.swift; sourceTree = "<group>"; };
 		03C4846A1C9D7A02000CD506 /* Lasagna-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lasagna-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		03C4846C1C9D7A02000CD506 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03C4846E1C9D7A02000CD506 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -75,6 +75,7 @@
 		03C484801C9D7A1A000CD506 /* Lasagna-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Lasagna-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		03C484821C9D7A1A000CD506 /* Lasagna_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lasagna_Tests.swift; sourceTree = "<group>"; };
 		03C484841C9D7A1A000CD506 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		03F502C91CA3D73D007358E8 /* CardCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCollectionViewLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,7 +149,8 @@
 			isa = PBXGroup;
 			children = (
 				03C4845C1C9D78E9000CD506 /* Lasagna.h */,
-				03C484641C9D78F9000CD506 /* CardCollectionView.swift */,
+				03C484641C9D78F9000CD506 /* StackCollectionViewLayout.swift */,
+				03F502C91CA3D73D007358E8 /* CardCollectionViewLayout.swift */,
 				033FCC481C9FE0EB00FEECA9 /* Random.swift */,
 				03C4845E1C9D78E9000CD506 /* Info.plist */,
 			);
@@ -319,8 +321,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03F502CA1CA3D73D007358E8 /* CardCollectionViewLayout.swift in Sources */,
 				033FCC491C9FE0EB00FEECA9 /* Random.swift in Sources */,
-				03C484651C9D78F9000CD506 /* CardCollectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,12 +16,12 @@ class CardCell: UICollectionViewCell {
   
   
   override init(frame: CGRect) {
-    label = UILabel(frame: CGRect(origin: CGPointZero, size: frame.size))
+    label = UILabel(frame: CGRect(origin: CGPointZero, size: CGSize(width: frame.width, height: 240)))
     label.textColor = UIColor.whiteColor()
     label.textAlignment = NSTextAlignment.Center
     label.font = UIFont.systemFontOfSize(40, weight: UIFontWeightThin)
     super.init(frame: frame)
-    self.addSubview(label)
+    self.contentView.addSubview(label)
     self.layer.cornerRadius = 20
     self.layer.borderColor = UIColor.blackColor().colorWithAlphaComponent(0.3).CGColor
     self.layer.borderWidth = 1

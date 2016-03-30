@@ -10,17 +10,17 @@ import UIKit
 import Lasagna
 
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIScrollViewDelegate {
 
-  var numberOfCards : Int = 5
+  var numberOfCards : Int = 10
   
   
   override func loadView() {
     super.loadView()
     self.view.backgroundColor = UIColor.whiteColor()
-    let size = CGSize(width: 320, height: 480)
-    let layout = CardCollectionViewLayout(cardSize: size)
-    layout.cardScaling = CardCollectionViewLayout.CardScalingEffectType.Stack(marginX: 0, marginY: 20, minimumScale: 0.95)
+    let layout = CardCollectionViewLayout()
+    layout.edgeInsets = UIEdgeInsets(top: 40, left: 0, bottom: 40, right: 0)
+    layout.cardSize = CGSize(width: 320, height: 480)
     let cardView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
     cardView.registerClass(CardCell.self, forCellWithReuseIdentifier: "Cell")
     cardView.backgroundColor = UIColor.whiteColor()
@@ -55,22 +55,7 @@ extension ViewController : CardCollectionViewDelegate, UICollectionViewDataSourc
   
   func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! CardCell
-    cell.label.text = "CARD \(indexPath.item)"
+    cell.label.text = "CARD \(indexPath.item + 1)"
     return cell
-  }
-  
-  
-  func collectionView(collectionView: UICollectionView, atIndex: Int, didSwipeToDirection: UISwipeGestureRecognizerDirection) {
-    print("Swiped card \(atIndex)")
-  }
-  
-  
-  func collectionView(collectionView: UICollectionView, atIndex: Int, didDragToPoint: CGPoint) {
-    print("Dragged card \(atIndex)")
-  }
-  
-  
-  func collectionView(collectionView: UICollectionView, atIndex: Int, draggingToPoint: CGPoint) {
-    print("Dragging card \(atIndex)")
   }
 }

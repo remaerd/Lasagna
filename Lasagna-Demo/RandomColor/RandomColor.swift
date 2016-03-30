@@ -86,7 +86,6 @@ public func randomColor(hue hue: Hue = .Random, luminosity: Luminosity = .Random
             }
         })
         
-        assert(color.count == 1, "There should one and only one color satisfied the filter")
         return color.first!
     }
     
