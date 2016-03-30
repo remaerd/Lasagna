@@ -16,10 +16,10 @@ Please intall [Carthage](https://github.com/cartage) then insert the following c
 	github "remaerd/Keys"
 ```
 
-＃＃＃ Example
+###Example
 
 ```swift
-		let layout = CardCollectionViewLayout()
+    let layout = CardCollectionViewLayout()
     layout.edgeInsets = UIEdgeInsets(top: 40, left: 0, bottom: 40, right: 0)
     layout.cardSize = CGSize(width: 320, height: 480)
     let cardView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
