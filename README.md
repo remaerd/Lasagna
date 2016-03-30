@@ -6,7 +6,7 @@
 
 Lasagna is a Swift Framework which help you implement Card Stack UICollectionView works similar as UITableView. Different from similar Objective-C Framework, Lasagna is carefully written to works well.
 
-[Demo](https://i.imgur.com/dIVnPhO.gif)
+![Demo](https://i.imgur.com/dIVnPhO.gif)
 
 ### Carthage
 
