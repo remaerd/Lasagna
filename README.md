@@ -13,7 +13,7 @@ Lasagna is a Swift Framework which help you implement Card Stack UICollectionVie
 Please intall [Carthage](https://github.com/cartage) then insert the following code into your `Cartfile`.
 
 ```
-	github "remaerd/Keys"
+	github "remaerd/Lasagna"
 ```
 
 ###Example
